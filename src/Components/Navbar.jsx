@@ -1,12 +1,12 @@
 import { NavLink } from "react-router-dom";
-import { AspectRatio, Box, Button, Stack, Text } from "@chakra-ui/react";
+import { Box, Button, Stack } from "@chakra-ui/react";
 import { FaGithub } from "react-icons/fa";
 const links = [
   { id: "1", title: "Home", path: "/" },
   { id: "2", title: "Finder ", path: "/finder" },
   { id: "3", title: "Github Stars", path: "/githubstars" },
   { id: "4", title: "Trending Repo", path: "/repo" },
-  { id: "5", title: "About Project", path: "/about" }
+  { id: "5", title: "About Project", path: "/about" },
 ];
 
 function Navbar() {

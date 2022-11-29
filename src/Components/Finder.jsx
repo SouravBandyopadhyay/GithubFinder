@@ -17,7 +17,6 @@ const Finder = () => {
   const [disabled, setDisabled] = useState(true);
   //Loading funtionality
   const [loading, setLoading] = useState(false);
-
   //Limit
   const [limit, setLimit] = useState(100);
   //Handling OnChange
@@ -61,11 +60,12 @@ const Finder = () => {
           />
           <Input type="tel" placeholder="Search User" />
         </InputGroup>
-        <Box p={5}>
+        <Box p={5} >
           <Button
             onClick={onSubmitHandle}
             colorScheme="facebook"
             variant="outline"
+            disabled={disabled}
           >
             Search
           </Button>
