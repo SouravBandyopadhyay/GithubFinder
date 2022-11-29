@@ -1,70 +1,75 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# GithubFinder
 
-## Available Scripts
+This is a robust, fully featured React App. This GitHub Finder allow user to find existing user on GitHub and also checkout some Trending Repository and Developers.
 
-In the project directory, you can run:
+## Tech Stack
 
-### `npm start`
+React, JavaScript, Html, CSS, Chakra-UI
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Deployment Link
+https://resplendent-granita-966ca8.netlify.app/
 
-### `npm test`
+## Features
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Navigation Bar and Footer is well aligned.
+- Fetching API for displaying the data along with there github stats.
+- Github Stars section is provided where top Github Contributors along with their github statistics is provided.
+- Searching Functionality is also provided.
+- Trending Repo section where all Trending Projects is mentioned along with Contributors and particulars.
+- All components are cross-device compatible.
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Installation
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Clone the Repository from Github. Then do the following steps:
 
-### `npm run eject`
+```bash
+    npm install
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+    npm run start
+```
+    
+## Screenshots
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+ ### Home Page
+ This is the landing page when user visits the website for first time.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+![App Screenshot](https://i.postimg.cc/d0vJxyRH/Web-capture-29-11-2022-141352-resplendent-granita-966ca8-netlify-app.jpg)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+ ### Finder Section
+Once user search for any particular username cards will be available in this manner.
 
-## Learn More
+![App Screenshot](https://i.postimg.cc/gjBvMpfs/Web-capture-29-11-2022-141648-resplendent-granita-966ca8-netlify-app.jpg)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+ ### Github Stars
+ This section shows the Developers who made considerable constribution on GitHub platform including their stats.
+ 
+![App Screenshot](https://i.postimg.cc/sDhcnQgZ/Web-capture-29-11-2022-142022-resplendent-granita-966ca8-netlify-app.jpg)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+  ### Trending Repo
+ This section shows the Repository that are trending on GitHub.
+ 
+![App Screenshot](https://i.postimg.cc/sXPtt6cb/Web-capture-29-11-2022-142444-resplendent-granita-966ca8-netlify-app.jpg)
 
-### Code Splitting
+ ### About Page
+ This is the concluding page where some useful links related to get in touch is provided.
+ 
+![App Screenshot](https://i.postimg.cc/tRSrYGY2/Web-capture-29-11-2022-142627-resplendent-granita-966ca8-netlify-app.jpg)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### Analyzing the Bundle Size
+## API Reference
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+#### Get All Users from Github API
 
-### Making a Progressive Web App
+```http
+  GET : `https://api.github.com/search/users?q=${user}&page=1&per_page=${limit}&order=asc`
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+#### Get Trending Repo API
 
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```http
+  GET : https://gtrend.yapie.me/
+```
