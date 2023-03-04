@@ -9,7 +9,7 @@ React, JavaScript, Html, CSS, Chakra-UI
 
 
 ## Deployment Link
-https://resplendent-granita-966ca8.netlify.app/
+https://github-finder-gray-two.vercel.app/
 
 ## Features
 
