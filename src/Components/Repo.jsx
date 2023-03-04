@@ -1,26 +1,28 @@
 import {
   Box,
-  Center,
-  Heading,
   Text,
-  Stack,
-  Avatar,
-  useColorModeValue,
-  Link
+  Link,
+  VStack,
+  Tag,
+  HStack,
+  Flex,
+  Tooltip,
+  Icon,
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
-
+import { BiGitRepoForked, BiStar } from "react-icons/bi";
+import { FiGithub } from "react-icons/fi";
 const Repo = () => {
-  const x1 = useColorModeValue("white", "gray.900");
-  const x2 = useColorModeValue("gray.700", "white");
   const [data, setData] = useState([]);
   const getAPI = () => {
-    fetch("https://gtrend.yapie.me/")
+    fetch(
+      "https://private-anon-a3fc9d4883-githubtrendingapi.apiary-mock.com/repositories"
+    )
       .then((response) => response.json())
       .then((response) => setData(response))
       .catch((err) => console.error(err));
   };
-  console.log("repo", data);
+  // console.log("repo", data);
   useEffect(() => {
     getAPI();
   }, []);
@@ -30,85 +32,106 @@ const Repo = () => {
         Trending Repo
       </Text>
       <Box
-        // border="2px solid orange"
+        width="70%"
         display="grid"
         gridTemplateColumns={["1fr", "1fr 1fr"]}
         p={1}
+        margin="auto"
+        gap="3"
       >
         {data &&
           data.map((el, index) => (
-            <Center py={6} key={index}>
-              <Box
-                maxW={"550px"}
-                w={"full"}
-                bg={x1}
-                boxShadow={"2xl"}
-                rounded={"md"}
-                p={6}
-                overflow={"hidden"}
-                _hover={{
-                  transform: "translateY(-3px)",
-                  fontWeight: 700,
-                  border: "1px solid teal"
-                }}
-              >
-                <Stack>
-                  <Heading
-                    color={x2}
-                    fontSize={"2xl"}
-                    fontFamily={"body"}
-                    letterSpacing={1.1}
+            <Box
+              py={6}
+              key={index}
+              size="xl"
+              px={[2, 4]}
+              mt={2}
+              rounded="xl"
+              borderWidth="1px"
+              _hover={{
+                shadow: "lg",
+                textDecoration: "none",
+              }}
+            >
+              <VStack overflow="hidden" align="start" spacing={1}>
+                <VStack spacing={1} align="start" w="100%">
+                  <Flex justifyContent="space-between" width="100%">
+                    <Tooltip hasArrow label="Github link" placement="top">
+                      <Link href={el.url} isExternal>
+                        <HStack cursor="pointer">
+                          <Icon as={FiGithub} boxSize="2em" mt="1px" />
+                          <Text
+                            fontSize="sm"
+                            noOfLines={1}
+                            fontWeight="600"
+                            align="left"
+                          >
+                            {el.name}
+                          </Text>
+                        </HStack>
+                      </Link>
+                    </Tooltip>
+
+                    <HStack cursor="pointer">
+                      {el.forks && (
+                        <Link href={el.url} isExternal>
+                          <Flex
+                            _hover={{ color: "blue.500" }}
+                            alignItems="center"
+                          >
+                            <Icon
+                              as={BiGitRepoForked}
+                              boxSize="0.9em"
+                              mt="1px"
+                            />
+
+                            <Box as="span" ml="1" fontSize="sm">
+                              {el.forks}
+                            </Box>
+                          </Flex>
+                        </Link>
+                      )}
+                      <Link href={el.url} isExternal>
+                        <Flex
+                          alignItems="center"
+                          _hover={{ color: "blue.500" }}
+                        >
+                          <Icon as={BiStar} boxSize="0.9em" mt="1px" />
+
+                          <Box as="span" ml="1" fontSize="sm">
+                            {el.stars}
+                          </Box>
+                        </Flex>
+                      </Link>
+                    </HStack>
+                  </Flex>
+                  {el.language && (
+                    <Flex justifyContent="space-between" width="100%">
+                      <Box>
+                        <HStack spacing="1">
+                          <Tag size="sm" colorScheme="blue">
+                            <Text fontSize={["0.55rem", "inherit", "inherit"]}>
+                              {el.language}
+                            </Text>
+                          </Tag>
+                        </HStack>
+                      </Box>
+                    </Flex>
+                  )}
+                </VStack>
+                <Box>
+                  <Text
+                    color="gray.500"
+                    fontSize="sm"
+                    noOfLines={2}
+                    textAlign="left"
                   >
-                    <Link href={el.url} isExternal>
-                      {el.name}
-                    </Link>
-                  </Heading>
-                  <Text color={"gray.600"} fontSize={["sm", "md"]}>
                     {el.description}
                   </Text>
-                  <Box>
-                    <Avatar src={el.avatar} alt={"Author"} boxSize="8em" />
-                  </Box>
-                </Stack>
-                <Stack
-                  // border="2px solid green"
-                  mt={6}
-                  direction={"row"}
-                  spacing={4}
-                  p={2}
-                  align={"center"}
-                  justifyContent="space-between"
-                >
-                  <Box
-                    // border="2px solid red"
-                    display="inline-flex"
-                    gap={2}
-                    justifyContent="center"
-                  >
-                    {el.builtBy.map((elem) => (
-                      <Avatar src={elem.avatar} margin="auto" />
-                    ))}
-                  </Box>
-                  <Stack
-                    direction={"column"}
-                    spacing={1}
-                    fontSize={["sm", "md"]}
-                    // border="2px solid red"
-                  >
-                    <Text fontWeight={600}>Author:{el.author}</Text>
-                    <Text color={el.languageColor} fontWeight="600">
-                      <strong>{el.language}</strong>
-                    </Text>
-                    <Text>
-                      <strong>Stars:{el.stars}</strong>{" "}
-                    </Text>
-                    <Text>
-                      <strong>forks:{el.forks}</strong>{" "}
-                    </Text>
-                  </Stack>
-                </Stack>
-              </Box>
-            </Center>
+                </Box>
+              </VStack>
+            </Box>
           ))}
       </Box>
     </>

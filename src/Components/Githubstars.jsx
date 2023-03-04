@@ -1,50 +1,35 @@
 import { useEffect, useState } from "react";
 import {
   Box,
-  chakra,
-  Container,
   Stack,
   Text,
   Image,
   Flex,
-  VStack,
   Button,
   Heading,
-  SimpleGrid,
-  StackDivider,
   useColorModeValue,
-  VisuallyHidden,
-  List,
-  ListItem,
-  Spinner,
   Center,
   Avatar,
-  Link
+  Link,
 } from "@chakra-ui/react";
 
 const Githubstars = () => {
   const [posts, setPosts] = useState([]);
   const [noofElements, setnoofElements] = useState(4);
-  const options = {
-    method: "GET",
-    headers: {
-      "X-RapidAPI-Key": "5f6fbc43c7msh7b2892562f48991p1a0887jsn43b5969c2659",
-      "X-RapidAPI-Host": "github-trending.p.rapidapi.com"
-    }
+  const getAPI = async () => {
+    let res = await fetch(
+      "https://github-stars-b92y.onrender.com/github_stars"
+    );
+    let data = res.json();
+    data
+      .then((res) => {
+        console.log(res);
+        setPosts(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
-  const getAPI = () => {
-    fetch(
-      "https://github-trending.p.rapidapi.com/developers?language=rust&since=daily",
-      options
-    )
-      .then((response) => response.json())
-      .then(
-        (response) => setPosts(response)
-        //console.log(response)
-      )
-      .catch((err) => console.error(err));
-  };
-
   useEffect(() => {
     getAPI();
   }, []);
@@ -91,7 +76,7 @@ const Githubstars = () => {
                   src={el.avatar}
                   alt={"Author"}
                   css={{
-                    border: "2px solid white"
+                    border: "2px solid white",
                   }}
                 />
               </Flex>
@@ -127,7 +112,7 @@ const Githubstars = () => {
                   rounded={"md"}
                   _hover={{
                     transform: "translateY(-2px)",
-                    boxShadow: "lg"
+                    boxShadow: "lg",
                   }}
                 >
                   <Link href={el.url} isExternal>
@@ -139,8 +124,12 @@ const Githubstars = () => {
           </Center>
         ))}
       </Box>
-
-      <Button onClick={() => loadMore()} p={4}>
+      <Button
+        margin="auto"
+        alignItems="center"
+        onClick={() => loadMore()}
+        p={4}
+      >
         Load More
       </Button>
     </>
