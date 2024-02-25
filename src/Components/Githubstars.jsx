@@ -23,7 +23,6 @@ const Githubstars = () => {
     let data = res.json();
     data
       .then((res) => {
-        console.log(res);
         setPosts(res);
       })
       .catch((err) => {

@@ -1,18 +1,24 @@
+import React, { lazy, Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
-import Home from "./Home";
-import About from "./About";
-import Githubstars from "./Githubstars";
-import Finder from "./Finder";
-import Repo from "./Repo";
+
+const Home = lazy(() => import("./Home"));
+const About = lazy(() => import("./About"));
+const Githubstars = lazy(() => import("./Githubstars"));
+const Finder = lazy(() => import("./Finder"));
+const Repo = lazy(() => import("./Repo"));
+
 function AllRoutes() {
   return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/finder" element={<Finder />} />
-      <Route path="/githubstars" element={<Githubstars />} />
-      <Route path="/about" element={<About />} />
-      <Route path="/repo" element={<Repo />} />
-    </Routes>
+    <Suspense fallback={<div>Loading...</div>}>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/finder" element={<Finder />} />
+        <Route path="/githubstars" element={<Githubstars />} />
+        <Route path="/about" element={<About />} />
+        {/* <Route path="/repo" element={<Repo />} /> */}
+      </Routes>
+    </Suspense>
   );
 }
+
 export default AllRoutes;
